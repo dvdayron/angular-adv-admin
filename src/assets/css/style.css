@@ -772,7 +772,8 @@ use profile section
 .sidebar-nav .user-profile > a img {
   width: 30px;
   border-radius: 100%;
-  margin-right: 10px; }
+  margin-right: 10px;
+  height: 30px; }
 
 .sidebar-nav .user-profile > ul {
   padding-left: 40px; }
@@ -1064,7 +1065,8 @@ File: scss
       background: rgba(0, 0, 0, 0.05); }
   .topbar .profile-pic {
     width: 30px;
-    border-radius: 100%; }
+    border-radius: 100%;
+    height: 30px; }
   .topbar .dropdown-menu {
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
     -webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);

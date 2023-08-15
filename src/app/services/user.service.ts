@@ -8,11 +8,15 @@ declare const google: any;
 import { environment } from 'src/environments/environment';
 import { RegisterInterface } from '../interfaces/register.interface';
 import { LoginInterface } from '../interfaces/login.interface';
+import { User } from '../models/user.model';
+import { UpdateUserInterface } from '../interfaces/update-user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  public user!: User;
 
   constructor(
     private httpClient: HttpClient
@@ -26,6 +30,25 @@ export class UserService {
           localStorage.setItem('auth-token', response.token);
         })
       );
+  }
+
+  updateUser(formData: UpdateUserInterface) {
+    formData = {
+      ...formData,
+      role: this.user.role,
+    }
+
+    return this.httpClient.put(environment.apiUrl + 'users/' + this.userId, formData, { 
+      headers: {
+        'auth-token': this.token,
+      }
+    }).pipe(
+      tap((response: any) => {
+        const { name, email } = response.user;
+        this.user.name = name;
+        this.user.email = email;
+      })
+    );
   }
 
   // login users
@@ -48,22 +71,32 @@ export class UserService {
   }
 
   validateToken(): Observable<boolean> {
-    const token = localStorage.getItem('auth-token') || '';
-
     return this.httpClient.get(environment.apiUrl + 'auth/renew', { 
       headers: {
-        'auth-token': token,
+        'auth-token': this.token,
       }
     }).pipe(
-      tap((response: any) => {
+      map((response: any) => {
+        const { name, email, id, role, image = '', googleAuth } = response.user;
+        this.user = new User(name, email, id, '', role, image, googleAuth);
+        console.log(response);
         localStorage.setItem('auth-token', response.token);
+
+        return true;
       }),
-      map(response => true),
       catchError(error => of(false))
     );
   }
 
   logout() {
     localStorage.removeItem('auth-token');
+  }
+
+  get token() {
+    return localStorage.getItem('auth-token') || '';
+  }
+
+  get userId() {
+    return this.user.id || '';
   }
 }
