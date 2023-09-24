@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 
 declare const google: any;
@@ -25,7 +25,7 @@ export class LoginComponent implements AfterViewInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private ngZone: NgZone,
   ) {
@@ -48,7 +48,7 @@ export class LoginComponent implements AfterViewInit {
   }
 
   handleCredentialResponse(response: any) {
-    this.userService.loginGoogle(response.credential)
+    this.authService.loginGoogle(response.credential)
       .subscribe((response: any) => {
         this.ngZone.run(() => {
           this.redirect();
@@ -82,7 +82,7 @@ export class LoginComponent implements AfterViewInit {
     this.formSubmitted = true;
 
     if (this.loginForm.valid) {
-      this.userService.login(this.loginForm.value)
+      this.authService.login(this.loginForm.value)
         .subscribe((response: any) => {
           if (this.loginForm.get('remember')?.value) {
             localStorage.setItem('email', this.loginForm.get('email')?.value)

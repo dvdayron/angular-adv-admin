@@ -7,12 +7,17 @@ import { ComponentsModule } from '../components/components.module';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProgressComponent } from './progress/progress.component';
-import { Graph1Component } from './graph1/graph1.component';
+import { ProgressComponent } from './examples/progress/progress.component';
+import { Graph1Component } from './examples/graph1/graph1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
-import { PromisesComponent } from './promises/promises.component';
-import { RxjsComponent } from './rxjs/rxjs.component';
+import { PromisesComponent } from './examples/promises/promises.component';
+import { RxjsComponent } from './examples/rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './users/users.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +29,10 @@ import { ProfileComponent } from './profile/profile.component';
     PromisesComponent,
     RxjsComponent,
     ProfileComponent,
+    UsersComponent,
+    DoctorsComponent,
+    HospitalsComponent,
+    UserEditComponent,
   ],
   imports: [
     CommonModule,

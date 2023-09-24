@@ -8,6 +8,15 @@ export class SidebarService {
   private menuItems: any[] = [
     {
       title: 'Dashboard',
+      icon: 'mdi mdi-folder-lock-open',
+      items: [
+        {title: 'Users', url: '/dashboard/users'},
+        {title: 'Doctors', url: '/dashboard/doctors'},
+        {title: 'Hospitals', url: '/dashboard/hospitals'},
+      ]
+    },
+    {
+      title: 'Examples',
       icon: 'mdi mdi-gauge',
       items: [
         {title: 'Dashboard', url: '/dashboard'},

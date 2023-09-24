@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -28,7 +28,7 @@ export class SingupComponent {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
   ) {
 
@@ -38,7 +38,7 @@ export class SingupComponent {
     this.formSubmitted = true;
 
     if (this.signUpForm.valid) {
-      this.userService.createUser(this.signUpForm.value)
+      this.authService.createUser(this.signUpForm.value)
         .subscribe((response: any) => {
           this.redirect()
         }, (err) => {

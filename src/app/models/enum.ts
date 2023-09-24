@@ -3,3 +3,8 @@ export enum fileCollection {
     hospital = 'hospital',
     user = 'user',
 };
+
+export enum roles {
+    user = 'USER_ROLE',
+    admin = 'ADMIN_ROLE',
+};

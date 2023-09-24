@@ -5,11 +5,13 @@ import { NgChartsModule } from 'ng2-charts';
 
 import { IncrementerComponent } from './incrementer/incrementer.component';
 import { GraphDoughnutComponent } from './graph-doughnut/graph-doughnut.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
     IncrementerComponent,
     GraphDoughnutComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -19,6 +21,7 @@ import { GraphDoughnutComponent } from './graph-doughnut/graph-doughnut.componen
   exports: [
     IncrementerComponent,
     GraphDoughnutComponent,
+    LoadingComponent,
   ]
 })
 export class ComponentsModule { }

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { fileCollection } from 'src/app/models/enum';
 
@@ -21,11 +21,10 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
+    private authService: AuthService,
     private fileUploadService: FileUploadService,
   ) {
-    this.user = userService.user;
-    console.log(this.user)
+    this.user = authService.user;
   }
 
   ngOnInit(): void {
@@ -37,7 +36,7 @@ export class ProfileComponent implements OnInit {
 
   saveGeneralForm(): void {
     
-    this.userService.updateUser(this.generalForm.value).subscribe((response) => {
+    this.authService.updateUser(this.generalForm.value).subscribe((response) => {
       Swal.fire({
         title: 'Success',
         text: response.msg,

@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="crud-actions mb-3">
+            <button [routerLink]="['/dashboard/users']" class="btn btn-secondary">
+                <i class="fa fa-angle-left"></i> Back
+            </button>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Avatar</h4>
+                <div class="form-group">
+                    <img *ngIf="!tmpImage && user" [src]="user.imageUrl" class="img-avatar"/>
+                    <img *ngIf="tmpImage" [src]="tmpImage" class="img-avatar"/>
+                    <div class="input-group">
+                        <input 
+                            type="file" 
+                            class="form-control"
+                            (change)="setTmpImage($event)"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Info</h4>
+                <form class="form p-t-20"
+                    [formGroup]="userForm"
+                    (ngSubmit)="update()">
+                    <div class="form-group">
+                        <label for="exampleInputuname">User Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input type="text" class="form-control" placeholder="Name" formControlName="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail">Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                            <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputRole">Role</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <select class="form-control" formControlName="role">
+                                <option value="USER_ROLE">User</option>
+                                <option value="ADMIN_ROLE">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" [disabled]="userForm.invalid">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

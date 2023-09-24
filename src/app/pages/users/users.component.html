@@ -1,0 +1,60 @@
+<div class="card">
+    <div class="card-body">
+        <div class="col-12">
+            <div class="crud-actions mb-3">
+                <input 
+                    type="text" 
+                    placeholder="Search users ..." 
+                    class="form-control"
+                    [(ngModel)]="term"
+                    (change)="searchTerm()"
+                />
+                <!--<button [routerLink]="['/dashboard/users/add']" class="btn btn-primary">
+                    <i class="fa fa-plus"></i> Add user
+                </button>-->
+            </div>
+        </div>
+        <div class="position-relative col-12">
+            <app-loading *ngIf="loading"></app-loading>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Avatar</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Google user</th>
+                            <th class="text-nowrap">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of usersList">
+                            <td>
+                                <img [src]="user.imageUrl" class="thumb"/>
+                            </td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.role }}</td>
+                            <td>
+                                <i class="fa fa-check text-success" *ngIf="user.googleAuth"></i>
+                            </td>
+                            <td class="text-nowrap">
+                                <a data-toggle="tooltip" data-original-title="Edit" class="cursor-pointer" [routerLink]="['/dashboard/users/edit/' + user.id]"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                <a *ngIf="showDeleteAction(user)" data-toggle="tooltip" data-original-title="Close" class="cursor-pointer" (click)="delete(user)"> <i class="fa fa-close text-danger"></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button class="btn btn-primary" (click)="changePage(-1)" [disabled]="disablePrevButton()">
+                        <i class="fa fa-angle-left"></i> Prev
+                    </button>
+                    <button class="btn btn-primary" (click)="changePage(1)" [disabled]="disableNextButton()">
+                        <i class="fa fa-angle-right"></i> Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

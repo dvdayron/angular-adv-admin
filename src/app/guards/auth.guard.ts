@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 import { tap } from 'rxjs';
 
 @Injectable({
@@ -8,12 +8,12 @@ import { tap } from 'rxjs';
 })
 export class AuthGuard {
   constructor(
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.userService.validateToken()
+    return this.authService.validateToken()
       .pipe(
         tap(isValid => {
           if (!isValid) {

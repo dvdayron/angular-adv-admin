@@ -14,7 +14,7 @@ import { UpdateUserInterface } from '../interfaces/update-user.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class AuthService {
 
   public user!: User;
 
